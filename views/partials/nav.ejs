@@ -1,4 +1,7 @@
-<section class="w-full py-5 bg-white">
+<section
+  class="w-full py-5 bg-white absolute top-0 left-0 z-10"
+  id="navigationBody"
+>
   <nav
     class="flex lg:gap-28 gap-10 justify-around lg:items-center flex-col lg:flex-row px-5 lg:px-0"
   >
@@ -34,25 +37,101 @@
           <li class="active mb-4 lg:mb-0">
             <a href="">home</a>
           </li>
-          <li
-            class="mb-4 lg:mb-0 transition duration-200 ease-linear hover:text-blue-600"
-          >
-            <a href="">shop</a>
+          <li class="relative mb-4 lg:mb-0 group">
+            <a
+              class="transition duration-200 ease-linear text-gray-600 hover:text-blue-600"
+              href="javascript:void(0)"
+              >shop</a
+            >
+            <div
+              class="lg:absolute lg:w-48 w-full bg-white lg:left-0 group-hover:opacity-100 opacity-0 transition duration-300 ease-in transform lg:translate-y-12 lg:group-hover:translate-y-7 hidden lg:block group-hover:block"
+            >
+              <ul>
+                <li
+                  class="border-b-2 border-gray-100 text-gray-600 py-4 px-5 hover:bg-blue-700 hover:text-white"
+                >
+                  <a href="">shop category</a>
+                </li>
+                <li
+                  class="border-b-2 border-gray-100 text-gray-600 py-4 px-5 hover:bg-blue-700 hover:text-white"
+                >
+                  <a href="">product details</a>
+                </li>
+                <li
+                  class="border-b-2 border-gray-100 text-gray-600 py-4 px-5 hover:bg-blue-700 hover:text-white"
+                >
+                  <a href="">product checkout</a>
+                </li>
+                <li
+                  class="border-b-2 border-gray-100 text-gray-600 py-4 px-5 hover:bg-blue-700 hover:text-white"
+                >
+                  <a href="">confirmation</a>
+                </li>
+                <li
+                  class="border-b-2 border-gray-100 text-gray-600 py-4 px-5 hover:bg-blue-700 hover:text-white"
+                >
+                  <a href="">shopping cart</a>
+                </li>
+              </ul>
+            </div>
           </li>
-          <li
-            class="mb-4 lg:mb-0 transition duration-200 ease-linear hover:text-blue-600"
-          >
-            <a href="">blog</a>
+          <li class="relative mb-4 lg:mb-0 group">
+            <a
+              class="transition duration-200 ease-linear text-gray-600 hover:text-blue-600"
+              href="janvascript:void(0)"
+              >blog</a
+            >
+            <div
+              class="lg:absolute lg:w-48 w-full bg-white lg:left-0 group-hover:opacity-100 opacity-0 transition duration-300 ease-in transform lg:translate-y-12 lg:group-hover:translate-y-7 hidden lg:block group-hover:block"
+            >
+              <ul>
+                <li
+                  class="border-b-2 border-gray-100 text-gray-600 py-4 px-5 hover:bg-blue-700 hover:text-white"
+                >
+                  <a href="">blog</a>
+                </li>
+                <li
+                  class="border-b-2 border-gray-100 text-gray-600 py-4 px-5 hover:bg-blue-700 hover:text-white"
+                >
+                  <a href="">blog details</a>
+                </li>
+              </ul>
+            </div>
           </li>
-          <li
-            class="mb-4 lg:mb-0 transition duration-200 ease-linear hover:text-blue-600"
-          >
-            <a href="">pages</a>
+          <li class="relative mb-4 lg:mb-0 group">
+            <a
+              class="transition duration-200 ease-linear text-gray-600 hover:text-blue-600"
+              href="javascript:void(0)"
+              >pages</a
+            >
+            <div
+              class="lg:absolute lg:w-48 w-full bg-white lg:left-0 group-hover:opacity-100 opacity-0 transition duration-300 ease-in transform lg:translate-y-12 lg:group-hover:translate-y-7 hidden lg:block group-hover:block"
+            >
+              <ul>
+                <li
+                  class="border-b-2 border-gray-100 text-gray-600 py-4 px-5 hover:bg-blue-700 hover:text-white"
+                >
+                  <a href="">login</a>
+                </li>
+                <li
+                  class="border-b-2 border-gray-100 text-gray-600 py-4 px-5 hover:bg-blue-700 hover:text-white"
+                >
+                  <a href="">register</a>
+                </li>
+                <li
+                  class="border-b-2 border-gray-100 text-gray-600 py-4 px-5 hover:bg-blue-700 hover:text-white"
+                >
+                  <a href="">tracking</a>
+                </li>
+              </ul>
+            </div>
           </li>
-          <li
-            class="mb-4 lg:mb-0 transition duration-200 ease-linear hover:text-blue-600"
-          >
-            <a href="">contact</a>
+          <li class="relative mb-4 lg:mb-0">
+            <a
+              class="transition duration-200 ease-linear text-gray-600 hover:text-blue-600"
+              href=""
+              >contact</a
+            >
           </li>
         </ul>
       </div>
@@ -113,3 +192,54 @@
     </div>
   </nav>
 </section>
+
+<!--Background Section-->
+<div class="relative mt-14">
+  <div>
+    <img
+      class="w-dvw h-dvh object-cover object-center"
+      id="bgImg"
+      src="/img/bg1.webp"
+      alt="bg1"
+    />
+  </div>
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex lg:w-10/12 w-95% justify-between items-center"
+  >
+    <div class="text-white">
+      <h3 class="md:text-2xl text-xl font-sans uppercase">new arrivals</h3>
+      <h1 class="uppercase text-4xl md:text-6xl mt-1">denim jaackets</h1>
+      <p
+        class="w-full max-w-600 my-4 md:my-6 tracking-wider leading-loose font-sans"
+      >
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quibusdam
+        soluta, error veritatis, dolor, incidunt maxime vitae doloribus non fuga
+        architecto hic nobis ab impedit minima sapiente quae molestiae quod
+        aperiam!
+      </p>
+      <div class="flex items-center gap-2 flex-wrap">
+        <button
+          class="border border-white px-10 py-3 uppercase font-semibold text-white bg-transparent rounded-full"
+        >
+          discover
+        </button>
+        <button
+          class="border border-white px-10 py-3 uppercase font-semibold text-black bg-white rounded-full"
+        >
+          add to cart
+        </button>
+      </div>
+    </div>
+    <div
+      class="w-40 h-40 bg-blue-600 text-white rounded-full items-center md:flex hidden justify-center p-2"
+    >
+      <div
+        class="border border-white w-full h-full rounded-full flex items-center justify-center flex-col"
+      >
+        <span class="font-mono text-lg font-semibold">from</span>
+        <span class="text-68 font-serif font-bold leading-none mb-2">$29</span>
+        <span class="uppercase font-light">shop now</span>
+      </div>
+    </div>
+  </div>
+</div>

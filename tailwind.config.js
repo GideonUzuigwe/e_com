@@ -4,12 +4,23 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        xxs: "8px"
+        xxs: "8px",
+        68: "68px"
       },
-      rotate: {
-        360: "360deg",
-        270: "270deg"
-      }
+      fontFamily: {
+        mono: "monospace"
+      },
+      maxWidth: {
+        600: "600px"
+      },
+      width: {
+        40: "168px",
+        "95%": "95%"
+      },
+      height: {
+        40: "168px",
+        "70dvh": "70dvh"
+      },
     },
   },
   plugins: [],
