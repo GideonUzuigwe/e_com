@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       fontSize: {
         xxs: "8px",
-        68: "68px"
+        "70px": "70px"
       },
       fontFamily: {
         mono: "monospace"
