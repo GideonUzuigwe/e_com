@@ -24,14 +24,18 @@
           <span class="capitalize text-gray-600 text-center block mt-1"
             >shop smarter today</span
           >
-          <form class="mt-10 w-full flex-grow">
+          <form
+            action="/auth/users/login"
+            method="post"
+            class="mt-10 w-full flex-grow"
+          >
             <div class="relative mb-5">
               <input
                 type="email"
                 name="email"
                 id="email"
                 class="group w-full pl-10 py-3 md:py-4 border border-gray-300 rounded text-gray-400 outline-none block placeholder:text-gray-400 placeholder:text-sm"
-                placeholder="Username or Email"
+                placeholder="Email Address"
                 required
               />
               <svg

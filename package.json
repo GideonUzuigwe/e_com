@@ -16,7 +16,11 @@
     "mongoose": "^8.3.5"
   },
   "devDependencies": {
+    "crypto-js": "^4.2.0",
+    "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
+    "json-web-token": "^3.2.0",
+    "jsonwebtoken": "^9.0.2",
     "multer": "^1.4.5-lts.1",
     "nodemon": "^3.1.0",
     "tailwindcss": "^3.4.3"
