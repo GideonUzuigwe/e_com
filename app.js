@@ -1,6 +1,5 @@
 const express = require("express");
 const app = express();
-const dbURI = "mongodb+srv://userAccess:user123@cluster0.nodzpc5.mongodb.net/Project3?retryWrites=true&w=majority&appName=Cluster0";
 const mongoose = require("mongoose");
 const router = require("./routes/routes");
 const auth = require("./routes/auth");
@@ -13,10 +12,10 @@ app.set("view engine", "ejs");
 
 //Use the middlewares in your application
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }))
-app.use("/api/users", router);
-app.use("/auth/users", auth);
+app.use(express.urlencoded({ extended: true }));
 app.use("/api/users", user);
+app.use("/api/users", router);
+app.use("/auth", auth);
 app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGO_URL)
@@ -27,4 +26,3 @@ mongoose.connect(process.env.MONGO_URL)
     .catch((err) => {
         console.log(err)
     });
-

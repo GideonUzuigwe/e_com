@@ -1,21 +1,31 @@
 const JWT = require("jsonwebtoken");
 
 const verifyToken = (req, res, next) => {
-    const authHeader = req.headers.token;
-    if (authHeader) {
-        console.log(authHeader)
-        const token = authHeader.split(" ")[1];
-        JWT.verify(token, process.env.JWT_SEC_KEY, (err, user) => {
-            if (err) {
-                return res.status(403).json("Token is not valid")
-            } else {
-                req.user = user;
-                next();
-            }
-        })
+    const authHeaders = req.headers.token;
+    if (authHeaders) {
+        const token = authHeaders.split(" ")[1];
+        try {
+            const decoded = JWT.verify(token, process.env.JWT_SEC_KEY);
+            req.user = decoded;
+            next();
+        } catch (err) {
+            res.status(401).json("Token is not valid");
+        }
     } else {
-        return res.status(401).json("You are not authenticated")
+        res.status(401).json("You are not authenticated")
     }
+    // const token = req.headers.token.split(" ")[1];
+    // if (token) {
+    //     try {
+    //         const decoded = JWT.verify(token, process.env.JWT_SEC_KEY);
+    //         req.user = decoded;
+    //         next();
+    //     } catch (err) {
+    //         res.status(401).json("Token is not valid");
+    //     }
+    // } else {
+    //     res.status(401).json("You are not authenticated")
+    // }
 };
 
 const verifyTokenAndAuthorization = (req, res, next) => {
@@ -25,7 +35,7 @@ const verifyTokenAndAuthorization = (req, res, next) => {
         } else {
             res.status(403).json("You are not allowed to do that!")
         }
-    })
-}
+    });
+};
 
 module.exports = { verifyToken, verifyTokenAndAuthorization };
