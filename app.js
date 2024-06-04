@@ -1,21 +1,28 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const router = require("./routes/routes");
-const auth = require("./routes/auth");
+const authRoute = require("./routes/auth");
 const dotenv = require("dotenv");
-const user = require("./routes/user");
+const userRoute = require("./routes/user");
+const productRoute = require("./routes/product");
+const cartRoute = require("./routes/cart");
+const orderRoute = require("./routes/order");
+const cookie = require("cookie-parser");
+
 
 dotenv.config()
 //Set the middleware for your application
 app.set("view engine", "ejs");
 
 //Use the middlewares in your application
+app.use(cookie())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api/users", user);
-app.use("/api/users", router);
-app.use("/auth", auth);
+app.use("/auth", authRoute);
+app.use("/api/user", userRoute);
+app.use("/api/product", productRoute);
+app.use("/api/cart", cartRoute);
+app.use("/api/order", orderRoute);
 app.use(express.static("public"));
 
 mongoose.connect(process.env.MONGO_URL)
@@ -24,5 +31,5 @@ mongoose.connect(process.env.MONGO_URL)
         console.log("Database Connected Successfully");
     })
     .catch((err) => {
-        console.log(err)
+        console.log(err);
     });

@@ -14,18 +14,6 @@ const verifyToken = (req, res, next) => {
     } else {
         res.status(401).json("You are not authenticated")
     }
-    // const token = req.headers.token.split(" ")[1];
-    // if (token) {
-    //     try {
-    //         const decoded = JWT.verify(token, process.env.JWT_SEC_KEY);
-    //         req.user = decoded;
-    //         next();
-    //     } catch (err) {
-    //         res.status(401).json("Token is not valid");
-    //     }
-    // } else {
-    //     res.status(401).json("You are not authenticated")
-    // }
 };
 
 const verifyTokenAndAuthorization = (req, res, next) => {
@@ -38,4 +26,14 @@ const verifyTokenAndAuthorization = (req, res, next) => {
     });
 };
 
-module.exports = { verifyToken, verifyTokenAndAuthorization };
+const verifyTokenAndAdmin = (req, res, next) => {
+    verifyToken(req, res, () => {
+        if (req.user.isAdmin) {
+            next();
+        } else {
+            res.status(403).json("You are not allowed to do that!")
+        }
+    });
+};
+
+module.exports = { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin };

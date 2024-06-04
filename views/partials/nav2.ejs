@@ -1,5 +1,5 @@
 <section
-  class="w-full py-5 bg-white absolute top-0 left-0 z-10"
+  class="w-full py-5 bg-white relative top-0 left-0 z-10"
   id="navigationBody"
 >
   <nav
@@ -7,7 +7,7 @@
   >
     <div class="flex justify-between items-center">
       <div>
-        <a href="/api/user/"><img src="/img/logo.webp" alt="logo" /></a>
+        <a href="/auth/en/user/"><img src="/img/logo.webp" alt="logo" /></a>
       </div>
 
       <div class="lg:hidden cursor-pointer">
@@ -35,7 +35,7 @@
       <div>
         <ul class="list-none lg:inline-flex lg:mb-0 gap-10 capitalize">
           <li class="active mb-4 lg:mb-0">
-            <a href="/api/user/">home</a>
+            <a href="/auth/en/user/">home</a>
           </li>
           <li class="relative mb-4 lg:mb-0 group">
             <a
@@ -183,10 +183,23 @@
           </a>
         </div>
 
-        <div
-          class="border border-gray-200 lg:py-3 lg:px-7 py-2 px-5 rounded-full transition duration-300 ease-linear hover:border-blue-600"
-        >
-          <a class="capitalize" href="/auth/login">my account</a>
+        <div class="lg:py-2 py-2">
+          <a href="/api/user/account/<%=userDetails._id%>">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="size-8 opacity-80"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+              />
+            </svg>
+          </a>
         </div>
       </div>
     </div>
