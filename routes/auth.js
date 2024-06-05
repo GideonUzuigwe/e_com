@@ -2,6 +2,7 @@ const router = require("express").Router();
 const User = require("../models/User");
 const CryptoJs = require("crypto-js");
 const JWT = require("jsonwebtoken");
+const { cookieAuthorizeUser } = require("../middleware/auth");
 
 let userDetails = [];
 //Gets The Login Page
@@ -24,15 +25,17 @@ router.post("/register", async (req, res, next) => {
 
     try {
         const userData = await newUser.save();
-        res.cookie("userData", userData, {
-            expires: new Date(Date.now() + 900000)
-        });
         setTimeout(() => {
             res.redirect("/auth/creating");
         }, 2000)
     } catch (err) {
         res.status(500).send(err)
     }
+});
+
+//Creating User Account
+router.get("/creating", async (req, res) => {
+    res.status(200).render("user-create", { title: "Creating Your Account" });
 });
 
 //Login User
@@ -52,28 +55,23 @@ router.post("/login", async (req, res) => {
             isAdmin: user.isAdmin
         }, process.env.JWT_SEC_KEY, { expiresIn: "3d" });
         const { password, ...others } = user._doc;
-
-        //Append The AccessToken to the Header for easy verification
-        res.setHeader("token", `Bearer ${accessToken}`);
-
+        userDetails = { ...others, accessToken };
+        res.cookie("_ust", userDetails, {
+            httpOnly: true,
+            secure: true,
+            expires: new Date(Date.now() + 60 * 60 * 24000)
+        })
         setTimeout(() => {
             res.redirect("/auth/en/user");
         }, 2000);
-        userDetails = { ...others, accessToken };
-        res.cookie("userDetails", userDetails)
     } catch (err) {
         res.status(500).json(err)
     }
 });
 
-//Creating User Account
-router.get("/creating", async (req, res) => {
-    res.status(200).render("user-create", { title: "Creating Your Account" });
-})
-
 //User Logged In
-router.get("/en/user", async (req, res) => {
-    if (req.cookies.userDetails.isAdmin) {
+router.get("/en/user", cookieAuthorizeUser, async (req, res) => {
+    if (req.cookies._ust.isAdmin) {
         res.status(200).json("You are an Admin")
     } else {
         res.status(200).render("user", { title: "Aroma | Shop", userDetails: userDetails });

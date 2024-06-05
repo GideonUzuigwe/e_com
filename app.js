@@ -8,9 +8,9 @@ const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
 const cookie = require("cookie-parser");
+const { errorHandler, notFound } = require("./middleware/auth");
 
-
-dotenv.config()
+dotenv.config();
 //Set the middleware for your application
 app.set("view engine", "ejs");
 
@@ -33,3 +33,9 @@ mongoose.connect(process.env.MONGO_URL)
     .catch((err) => {
         console.log(err);
     });
+
+//Render 404 Page
+app.use(notFound);
+
+//Handle errors
+app.use(errorHandler);
