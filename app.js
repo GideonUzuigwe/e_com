@@ -34,6 +34,10 @@ mongoose.connect(process.env.MONGO_URL)
         console.log(err);
     });
 
+app.get("/", (req, res) => {
+    res.redirect("/api/user");
+})
+
 //Render 404 Page
 app.use(notFound);
 

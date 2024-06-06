@@ -40,14 +40,63 @@ body {
   );
 }
 
+#scroller[data-animated="true"]:hover #scrollBarInner {
+  animation-play-state: paused;
+}
+
 #scroller[data-animated="true"] #scrollBarInner {
   width: max-content;
   flex-wrap: nowrap;
-  animation: scroll 20s linear infinite;
+  animation: scroll var(--animation-duration, 40s)
+    var(--animation-direction, forwards) linear infinite;
+}
+
+#scroller[data-direction="right"] {
+  --animation-direction: reverse;
+}
+
+#scroller[data-speed="fast"] {
+  --animation-duration: 10s;
+}
+
+#scroller[data-speed="slow"] {
+  --animation-duration: 50s;
 }
 
 @keyframes scroll {
   to {
     transform: translate(calc(-50% - 0.5rem));
   }
+}
+
+#wrapper {
+  max-width: 1020px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+#carousel {
+  width: 100%;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% / 4) - 16px);
+  gap: 20px;
+  overflow: auto;
+  scrollbar-width: 0;
+}
+
+#carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.__carouselNavigator {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }

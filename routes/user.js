@@ -1,15 +1,23 @@
 const router = require("express").Router();
 const User = require("../models/User");
+const Product = require("../models/Product");
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("./verifyToken");
 const CryptoJS = require("crypto-js");
 
 //Gets Homepage
-router.get("/", (req, res, next) => {
-    res.render("index", { title: "Aroma Shop | eCommerce" });
+router.get("/", async (req, res, next) => {
+    try {
+        const products = await Product.find();
+        const choiceProducts = await Product.find({ categories: "choice" });
+        res.render("index", { title: "Aroma Shop | eCommerce", products, choiceProducts });
+    } catch (err) {
+        res.status(500).json("Something went wrong")
+    }
+
 });
 
 //Update User
-router.put("/:id", async (req, res) => {
+router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
     if (req.body.password) {
         req.body.password = CryptoJS.DES.encrypt(req.body.password, process.env.PASS_SEC).toString();
     };
@@ -79,9 +87,9 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
 });
 
 //User Account
-router.get("/account/:id", async (req, res) => {
-    res.status(200).json(req.header)
-    // res.status(200).json(req.user);
+router.get("/account", async (req, res) => {
+    console.log(req);
+    res.status(200).json("You are in accounts")
 })
 
 

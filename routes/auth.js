@@ -56,6 +56,7 @@ router.post("/login", async (req, res) => {
         }, process.env.JWT_SEC_KEY, { expiresIn: "3d" });
         const { password, ...others } = user._doc;
         userDetails = { ...others, accessToken };
+        res.set("token", `Bearer ${accessToken}`);
         res.cookie("_ust", userDetails, {
             httpOnly: true,
             secure: true,

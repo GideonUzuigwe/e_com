@@ -3,7 +3,7 @@
     <div>
       <h3 class="my-5 font-bold text-gray-900 text-2xl">Shop by categories</h3>
     </div>
-    <div class="w-full my-8" id="scroller">
+    <div class="w-full my-8 relative" id="scroller">
       <div class="flex flex-wrap gap-16" id="scrollBarInner">
         <a
           class="flex items-center justify-center flex-col"
@@ -22,7 +22,7 @@
           <img
             class="w-28 h-28"
             src="\img\hair extension.webp"
-            alt="Men clothing"
+            alt="hair extension and wigs"
           />
           <span class="block text-center capitalize text-lg mt-2"
             >Hair Extension & wigs</span
@@ -32,7 +32,7 @@
           <img
             class="w-28 h-28"
             src="\img\consumer electronics.webp"
-            alt="Men clothing"
+            alt="consumer electronics"
           />
           <span class="block text-center capitalize text-lg mt-2"
             >consumer electronics</span
@@ -42,7 +42,7 @@
           <img
             class="w-28 h-28"
             src="\img\home applicances.webp"
-            alt="Men clothing"
+            alt="home applicances"
           />
           <span class="block text-center capitalize text-lg mt-2"
             >home applicances</span
@@ -52,18 +52,79 @@
           <img
             class="w-28 h-28"
             src="\img\luggages & bags.webp"
-            alt="Men clothing"
+            alt="luggages & bags"
           />
           <span class="block text-center capitalize text-lg mt-2"
             >luggages & bags</span
           >
         </a>
         <a class="flex items-center justify-center flex-col" href="">
-          <img class="w-28 h-28" src="\img\shoes.webp" alt="Men clothing" />
+          <img class="w-28 h-28" src="\img\shoes.webp" alt="luggages & bags" />
           <span class="block text-center capitalize text-lg mt-2">shoes</span>
         </a>
       </div>
-      <div id="second"></div>
+    </div>
+
+    <div class="w-full my-8 relative" id="scroller" data-speed="slow">
+      <div class="flex flex-wrap gap-16" id="scrollBarInner">
+        <a
+          class="flex items-center justify-center flex-col"
+          href="/api/product/product-category?category=men's clothing"
+        >
+          <img
+            class="w-28 h-28"
+            src="\img\men's clothing.webp"
+            alt="Men clothing"
+          />
+          <span class="block text-center capitalize text-lg mt-2"
+            >Men's clothing</span
+          >
+        </a>
+        <a class="flex items-center justify-center flex-col" href="">
+          <img
+            class="w-28 h-28"
+            src="\img\hair extension.webp"
+            alt="hair extension and wigs"
+          />
+          <span class="block text-center capitalize text-lg mt-2"
+            >Hair Extension & wigs</span
+          >
+        </a>
+        <a class="flex items-center justify-center flex-col" href="">
+          <img
+            class="w-28 h-28"
+            src="\img\consumer electronics.webp"
+            alt="consumer electronics"
+          />
+          <span class="block text-center capitalize text-lg mt-2"
+            >consumer electronics</span
+          >
+        </a>
+        <a class="flex items-center justify-center flex-col" href="">
+          <img
+            class="w-28 h-28"
+            src="\img\home applicances.webp"
+            alt="home applicances"
+          />
+          <span class="block text-center capitalize text-lg mt-2"
+            >home applicances</span
+          >
+        </a>
+        <a class="flex items-center justify-center flex-col" href="">
+          <img
+            class="w-28 h-28"
+            src="\img\luggages & bags.webp"
+            alt="luggages & bags"
+          />
+          <span class="block text-center capitalize text-lg mt-2"
+            >luggages & bags</span
+          >
+        </a>
+        <a class="flex items-center justify-center flex-col" href="">
+          <img class="w-28 h-28" src="\img\shoes.webp" alt="luggages & bags" />
+          <span class="block text-center capitalize text-lg mt-2">shoes</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -87,22 +148,29 @@
         >View More</a
       >
     </div>
-    <div class="my-5" id="wrapper">
-      <div class="w-full h-80 flex gap-5" id="carousel">
-        <a href="">
-          <div
-            class="w-56 h-full p-2 rounded-2xl"
-            style="
-              background-image: url('https://ae01.alicdn.com/kf/Sf00ffce382b941abad4ed1362ca15e1fe/384x597.png_.webp');
-              background-position: center;
-              background-size: cover;
-            "
-          >
-            <p>Hello Product 1</p>
-          </div>
-        </a>
-        <a href="">
-          <div class="w-56 p-3 rounded-2xl bg-white group">
+    <div class="w-full overflow-x-hidden relative" id="wrapper">
+      <button
+        class="bg-gray-200 rounded-full left-0 text-gray-900 cursor-pointer hidden items-center justify-center font-semibold __carouselNavigator z-10"
+        id="previous"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+          class="size-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M9.78 4.22a.75.75 0 0 1 0 1.06L7.06 8l2.72 2.72a.75.75 0 1 1-1.06 1.06L5.47 8.53a.75.75 0 0 1 0-1.06l3.25-3.25a.75.75 0 0 1 1.06 0Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+      <div class="h-full" id="carousel">
+        <% if(choiceProducts) {%> <%for(var i = 0; i < 6; i++) {%>
+
+        <a href="/api/product/find/<%=choiceProducts[i]._id%>">
+          <div class="w-60 p-3 rounded-2xl bg-white group">
             <div class="relative">
               <div
                 class="absolute top-1/2 -translate-y-1/2 right-4 bg-white rounded-full w-12 h-12 flex items-center justify-center group/cart hover:bg-black"
@@ -122,13 +190,17 @@
                   />
                 </svg>
               </div>
-              <img class="mb-2" src="\img\uno flip.webp" alt="UNO FLIP" />
+              <img
+                class="mb-2 w-full h-full rounded-2xl"
+                src="<%=choiceProducts[i].image%>"
+                alt="<%=choiceProducts[i].title%>"
+              />
               <div>
                 <div class="flex items-center gap-1">
                   <div
                     class="overflow-hidden w-full whitespace-nowrap text-gray-800"
                   >
-                    <span class="text-sm">UNO FLIP! Pokemon Boarding</span>
+                    <span class="text-sm"><%=choiceProducts[i].title%></span>
                   </div>
 
                   <span>...</span>
@@ -143,23 +215,36 @@
                 <div class="inline-block text-gray-700">
                   <span class="capitalize font-semibold text-xl">$</span>
                   <div class="inline-flex items-baseline">
-                    <span class="text-3xl font-bold">105</span>
+                    <span class="text-3xl font-bold"
+                      ><%=choiceProducts[i].price%></span
+                    >
                     <span class="font-semibold text-xl">.11</span>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div class="mt-2">
-              <button
-                class="w-full py-2 rounded-full bg-gray-900 text-white hidden group-hover:block font-semibold"
-              >
-                See preview
-              </button>
-            </div>
           </div>
         </a>
+
+        <% } %> <% } %>
       </div>
+      <button
+        class="bg-gray-200 rounded-full right-0 text-gray-800 cursor-pointer flex items-center justify-center font-semibold __carouselNavigator z-10"
+        id="next"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+          class="size-6"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M6.22 4.22a.75.75 0 0 1 1.06 0l3.25 3.25a.75.75 0 0 1 0 1.06l-3.25 3.25a.75.75 0 0 1-1.06-1.06L8.94 8 6.22 5.28a.75.75 0 0 1 0-1.06Z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
     </div>
   </div>
 </section>

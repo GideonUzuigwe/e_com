@@ -1,3 +1,8 @@
+
+const carousel = document.getElementById("carousel");
+const __carouselNavigator = document.querySelectorAll(".__carouselNavigator");
+
+//Handle Star Reviews
 const starSpan = document.querySelectorAll("#starSpan");
 starSpan.forEach((element) => {
     for (var i = 0; i < 4; i++) {
@@ -8,19 +13,44 @@ starSpan.forEach((element) => {
 const scrollers = document.querySelectorAll("#scroller");
 if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     addAnimation();
+    carouselNavigator();
 }
 
+//Handle Scroller Animation
 function addAnimation() {
     scrollers.forEach(scroller => {
         scroller.setAttribute("data-animated", true);
 
-        const scrollBarInner = document.querySelector("#scrollBarInner");
-        const scrollChildren = Array.from(scrollBarInner.children);
+        const scrollBarInner = scroller.querySelectorAll("#scrollBarInner");
+        scrollBarInner.forEach(innerScroller => {
+            const scrollChildren = Array.from(innerScroller.children);
+            scrollChildren.forEach(child => {
+                const duplicatedItem = child.cloneNode(true);
+                duplicatedItem.setAttribute("arial-hidden", true);
+                innerScroller.appendChild(duplicatedItem);
+            })
+        })
+    })
+};
 
-        scrollChildren.forEach(child => {
-            const duplicatedItem = child.cloneNode(true);
-            duplicatedItem.setAttribute("arial-hidden", true);
-            scrollBarInner.appendChild(duplicatedItem);
+//Handle Carousel Navigator
+function carouselNavigator() {
+    __carouselNavigator.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            const id = e.target.parentElement.id;
+            const data = id === "previous" ? -1 : 1;
+            const scrollAmount = carousel.clientWidth * data;
+            carousel.scrollBy({ left: scrollAmount, behavior: "smooth" });
         })
     })
 }
+
+const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+function handleScrollNavigator() {
+    __carouselNavigator[0].style.display = carousel.scrollLeft <= 0 ? "none" : "flex";
+    __carouselNavigator[1].style.display = carousel.scrollLeft >= maxScrollLeft ? "none" : "flex";
+}
+
+carousel.addEventListener("scroll", (e) => {
+    handleScrollNavigator();
+})
