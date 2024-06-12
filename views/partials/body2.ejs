@@ -130,7 +130,7 @@
 </section>
 
 <section class="flex items-center justify-center bg-orange-300 p-5 md:p-10">
-  <div class="w-full max-w-90%">
+  <div class="w-full lg:max-w-90%">
     <div class="flex items-center justify-between">
       <a class="flex gap-2 flex-wrap" href="">
         <div
@@ -170,7 +170,7 @@
         <% if(choiceProducts) {%> <%for(var i = 0; i < 6; i++) {%>
 
         <a href="/api/product/find/<%=choiceProducts[i]._id%>">
-          <div class="w-60 p-3 rounded-2xl bg-white group">
+          <div class="w-full p-3 rounded-2xl bg-white group">
             <div class="relative">
               <div
                 class="absolute top-1/2 -translate-y-1/2 right-4 bg-white rounded-full w-12 h-12 flex items-center justify-center group/cart hover:bg-black"
@@ -212,7 +212,7 @@
                   ></div>
                   <span>10,000+ sold</span>
                 </div>
-                <div class="inline-block text-gray-700">
+                <div class="inline-block text-gray-700 my-2">
                   <span class="capitalize font-semibold text-xl">$</span>
                   <div class="inline-flex items-baseline">
                     <span class="text-3xl font-bold"
@@ -332,6 +332,6 @@
   </div>
 </section>
 
-<section class="h-dvh"></section>
+<!-- <section class="h-dvh"></section> -->
 
 <script defer src="/scripts/body2.js"></script>

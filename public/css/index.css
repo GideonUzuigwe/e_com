@@ -71,6 +71,7 @@ body {
 
 #wrapper {
   max-width: 1020px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -99,4 +100,22 @@ body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+}
+
+@media only screen and (max-width: 1200px) {
+  #carousel {
+    grid-auto-columns: calc((100% / 3) - 12px);
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #carousel {
+    grid-auto-columns: calc((100% / 2) - 8px);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #carousel {
+    grid-auto-columns: 100%;
+  }
 }

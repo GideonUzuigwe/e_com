@@ -8,7 +8,8 @@ module.exports = {
         "70px": "70px"
       },
       fontFamily: {
-        mono: "monospace"
+        mono: "monospace",
+        arial: "Arial"
       },
       maxWidth: {
         600: "600px",
