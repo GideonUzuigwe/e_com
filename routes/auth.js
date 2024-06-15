@@ -1,13 +1,19 @@
 const router = require("express").Router();
 const User = require("../models/User");
+const Product = require("../models/Product");
 const CryptoJs = require("crypto-js");
 const JWT = require("jsonwebtoken");
-const { cookieAuthorizeUser } = require("../middleware/auth");
 
 let userDetails = [];
 //Gets The Login Page
 router.get("/login", (req, res, next) => {
-    res.render("login", { title: "Aroma Shop | Login" });
+    const query = req.query.newAccount;
+    if (query) {
+        res.render("login", { title: "Aroma Shop | Login", newAccount: true });
+    } else {
+        res.render("login", { title: "Aroma Shop | Login" });
+    }
+
 });
 
 //Gets The Sign Up Page
@@ -35,7 +41,7 @@ router.post("/register", async (req, res, next) => {
 
 //Creating User Account
 router.get("/creating", async (req, res) => {
-    res.status(200).render("user-create", { title: "Creating Your Account" });
+    res.status(200).render("user-create", { title: "Creating Your Account", newAccount: true });
 });
 
 //Login User
@@ -50,32 +56,26 @@ router.post("/login", async (req, res) => {
         if (OriginalPassword !== req.body.password) {
             return res.status(401).json("Wrong Credentials");
         }
+
+        //Create the JWT access token
         const accessToken = JWT.sign({
             id: user._id,
             isAdmin: user.isAdmin
         }, process.env.JWT_SEC_KEY, { expiresIn: "3d" });
+
+        //Add the JWT Token to the cookie for easy assessment
+        res.cookie("token", accessToken, {
+            httpOnly: true
+        });
+
         const { password, ...others } = user._doc;
         userDetails = { ...others, accessToken };
-        res.set("token", `Bearer ${accessToken}`);
-        res.cookie("_ust", userDetails, {
-            httpOnly: true,
-            secure: true,
-            expires: new Date(Date.now() + 60 * 60 * 24000)
-        })
+
         setTimeout(() => {
-            res.redirect("/auth/en/user");
-        }, 2000);
+            res.redirect("/api/user/en/user")
+        }, 2000)
     } catch (err) {
         res.status(500).json(err)
-    }
-});
-
-//User Logged In
-router.get("/en/user", cookieAuthorizeUser, async (req, res) => {
-    if (req.cookies._ust.isAdmin) {
-        res.status(200).json("You are an Admin")
-    } else {
-        res.status(200).render("user", { title: "Aroma | Shop", userDetails: userDetails });
     }
 });
 

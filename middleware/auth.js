@@ -15,4 +15,12 @@ function notFound(req, res, next) {
     res.status(404).send("Sorry can't find that page")
 };
 
-module.exports = { cookieAuthorizeUser, errorHandler, notFound };
+function setTokenInHeader(req, res, next) {
+    const token = req.cookies.token;
+    if (token) {
+        res.setHeader("Authorization", `Bearer ${token}`);
+    }
+    next();
+}
+
+module.exports = { cookieAuthorizeUser, errorHandler, notFound, setTokenInHeader };

@@ -3,6 +3,7 @@ const User = require("../models/User");
 const Product = require("../models/Product");
 const { verifyToken, verifyTokenAndAuthorization, verifyTokenAndAdmin } = require("./verifyToken");
 const CryptoJS = require("crypto-js");
+const { cookieAuthorizeUser } = require("../middleware/auth");
 
 //Gets Homepage
 router.get("/", async (req, res, next) => {
@@ -13,7 +14,6 @@ router.get("/", async (req, res, next) => {
     } catch (err) {
         res.status(500).json("Something went wrong")
     }
-
 });
 
 //Update User
@@ -86,11 +86,29 @@ router.get("/stats", verifyTokenAndAdmin, async (req, res) => {
     }
 });
 
+//User Logged In
+router.get("/en/user", verifyToken, async (req, res) => {
+    try {
+        const products = await Product.find();
+        const choiceProducts = await Product.find({ categories: "choice" });
+        res.status(200).render("user", { title: "Aroma | Shop", products, choiceProducts, userDetails: req.user });
+    } catch (err) {
+        res.status(500).json("The router did not work?")
+    }
+});
+
 //User Account
-router.get("/account", async (req, res) => {
-    console.log(req);
-    res.status(200).json("You are in accounts")
-})
+router.get("/account/:id", verifyTokenAndAuthorization, async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        const { password, ...others } = user._doc;
+        res.render("accounts", { title: "Aroma | Shop | Accounts", userDetails: req.user, others })
+    } catch (err) {
+        console.log(err)
+    }
+});
+
+//Log Out User
 
 
 module.exports = router;

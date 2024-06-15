@@ -31,7 +31,7 @@
       let timeOut = setInterval(() => {
         count--;
         if (count <= 0) {
-          window.location.href = "/auth/login";
+          window.location.href = "/auth/login?newAccount=true";
         }
         document.getElementById("count").textContent = count;
       }, 1000);

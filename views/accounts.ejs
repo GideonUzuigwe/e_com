@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+  <body>
+    <%- include("./partials/nav2.ejs") %>
+
+    <section class="my-10">This is my account Section!</section>
+    <section>MY UserId: <%=userDetails.id %></section>
+    <section>MY username: <%=others.username %></section>
+    <section>MY email: <%=others.email %></section>
+    <section>MY isAdmin: <%=others.isAdmin %></section>
+
+    <button>Log Out</button>
+
+    <%- include("./partials/footer.ejs")%>
+  </body>
+</html>

@@ -8,7 +8,7 @@ const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
 const cookie = require("cookie-parser");
-const { errorHandler, notFound } = require("./middleware/auth");
+const { errorHandler, notFound, setTokenInHeader } = require("./middleware/auth");
 
 dotenv.config();
 //Set the middleware for your application
@@ -24,6 +24,7 @@ app.use("/api/product", productRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/order", orderRoute);
 app.use(express.static("public"));
+app.use(setTokenInHeader);
 
 mongoose.connect(process.env.MONGO_URL)
     .then(() => {

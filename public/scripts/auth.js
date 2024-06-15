@@ -25,3 +25,30 @@ password.addEventListener("input", () => {
         eyeOpen.classList.remove("block");
     };
 });
+
+const Form = document.getElementById("form");
+const animateSpin = document.getElementById("animateSpin");
+animateSpin.style.display = "none";
+Form.addEventListener("submit", (e) => {
+    document.getElementById("sendForm").style.display = "none";
+    animateSpin.style.display = "block";
+    const btnSubmit = document.getElementById("btnSubmit");
+    btnSubmit.classList.replace("bg-blue-600", "bg-blue-300");
+    btnSubmit.classList.add("scale-75");
+});
+
+//Create a pop up notification when user is done with creating account
+const newAccountNotification = document.getElementById("newAccountNotification");
+document.addEventListener("DOMContentLoaded", (e) => {
+    if (!newAccountNotification) return;
+    newAccountNotification.style.display = "flex";
+    newAccountNotification.classList.replace("top-0", "top-20");
+    setTimeout(() => {
+        newAccountNotification.style.display = "none";
+    }, 5000);
+
+    //Exit the pop up notification
+    document.getElementById("exitNotification").addEventListener("click", (e) => {
+        newAccountNotification.style.display = "none"
+    })
+});

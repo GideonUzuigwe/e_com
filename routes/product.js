@@ -68,7 +68,7 @@ router.get("/product-category", async (req, res) => {
     try {
         let products;
         products = await Product.find({ categories: { $in: [category] } });
-        res.status(200).json(products);
+        res.render("categories", { title: "Aroma | Shop | Products", products, userDetails: req.cookies._ust })
     } catch (err) {
         res.status(500).json(err)
     }

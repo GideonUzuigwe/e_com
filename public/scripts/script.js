@@ -23,6 +23,7 @@ navBar.addEventListener("click", () => {
 //Navigation Scroll EventListener
 const navigationBody = document.getElementById("navigationBody");
 document.addEventListener("scroll", (scroll) => {
+  navigationBody.style.position = "relative";
   if (scrollY > 200) {
     navigationBody.style.position = "fixed";
     navigationBody.classList.add("p-fixed");
@@ -31,3 +32,17 @@ document.addEventListener("scroll", (scroll) => {
     navigationBody.classList.remove("p-fixed");
   }
 });
+
+// //Create a pop up notification when user is done with creating account
+// const newAccountNotification = document.getElementById("newAccountNotification");
+// document.addeventListener("DOMContentLoaded", (e) => {
+//   newAccountNotification.style.classList.replace("top-0", "top-20");
+//   setTimeout(() => {
+//     newAccountNotification.style.display = "none";
+//   }, 5000)
+// });
+
+// //Exit the pop up notification
+// document.getElementById("exitNotification").addEventListener("click", (e) => {
+//   newAccountNotification.style.display = "none"
+// })
